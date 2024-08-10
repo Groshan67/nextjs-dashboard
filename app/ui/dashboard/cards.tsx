@@ -25,7 +25,7 @@ export default async function CardWrapper() {
         title="Total Customers"
         value={numberOfCustomers}
         type="customers"
-      /> */}
+      /> ***/}
     </>
   );
 }
