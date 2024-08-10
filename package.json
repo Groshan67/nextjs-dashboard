@@ -4,6 +4,8 @@
     "build": "next build",
     "dev": "next dev",
     "start": "next start",
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'"
   },
   "dependencies": {
     "@heroicons/react": "^2.1.4",
@@ -27,7 +29,12 @@
     "@types/node": "20.14.8",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.1",
     "@typescript-eslint/parser": "^8.0.1",
+    "eslint": "^9.8.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.35.0",
     "globals": "^15.9.0",
     "prettier": "^3.3.3",
     "typescript-eslint": "^8.0.1"
