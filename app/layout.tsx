@@ -1,5 +1,5 @@
 import '@/app/ui/global.css';
-import { jetbrains } from './ui/font';
+import { jetbrains } from './ui/fonts';
 
 export default function RootLayout({
   children,
