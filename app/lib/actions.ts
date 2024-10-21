@@ -4,9 +4,6 @@ import { z } from 'zod';
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { error } from 'console';
-import EditInvoiceForm from '../ui/invoices/edit-form';
-import bcrypt from 'bcrypt';
 
 const FormSchema = z.object({
     id: z.string(),
@@ -62,8 +59,10 @@ export async function createInvoice(prevState: State, formData: FormData) {
     VALUES(${customer_Id},${amountInCents},${status},${String(date)})
     `;
     } catch (error) {
+        console.log(error)
         return {
-            message: 'Database Error: Failed to Create Invoice'
+            message: 'Database Error: Failed to Create Invoice',
+
         }
     }
 
@@ -102,6 +101,7 @@ export async function updateInvoice(id: string, prevState: State, formData: Form
         WHERE id = ${id}
         `;
     } catch (error) {
+        console.log(error)
         return {
             message: 'Database Error: Failed to Update Invoice.'
         }
@@ -119,6 +119,7 @@ export async function deleteInvoice(id: string) {
         return { message: 'Deleted Invoice.' }
 
     } catch (error) {
+        console.log(error)
         return { message: 'Database Error: Failed to Delete Invoice' }
     }
 }

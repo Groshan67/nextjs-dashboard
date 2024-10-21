@@ -6,7 +6,6 @@ import { jetBrains } from '@/app/ui/fonts';
 import { Suspense } from 'react';
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import { fetchInvoicesPages } from '@/app/lib/data';
-import { invoices } from '@/app/lib/placeholder-data';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -26,7 +25,7 @@ export default async function Page({ searchParams, }: { searchParams?: { query?:
                 <h1 className={`${jetBrains.className} text-2xl`}>Invoices</h1>
             </div>
             <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
-                <Search placeholder="Search invoices..." />
+                <Search />
                 <CreateInvoice />
             </div>
             <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
