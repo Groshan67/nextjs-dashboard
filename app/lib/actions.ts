@@ -6,6 +6,7 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { error } from 'console';
 import EditInvoiceForm from '../ui/invoices/edit-form';
+import bcrypt from 'bcrypt';
 
 const FormSchema = z.object({
     id: z.string(),
@@ -17,6 +18,9 @@ const FormSchema = z.object({
     }),
     date: z.string(),
 });
+
+import { signIn } from '@/auth';
+import { AuthError } from 'next-auth';
 
 const CreateInvoice = FormSchema.omit({ id: true, date: true })
 const UpdateInvoice = FormSchema.omit({ id: true, date: true })
@@ -118,3 +122,21 @@ export async function deleteInvoice(id: string) {
         return { message: 'Database Error: Failed to Delete Invoice' }
     }
 }
+
+export async function authenticate(prevState: string | undefined, formData: FormData) {
+    try {
+        await signIn('credentials', formData);
+    } catch (error) {
+        console.log('rrrrr', error)
+        if (error instanceof AuthError) {
+            switch (error.type) {
+                case 'CredentialsSignin':
+                    return 'Invalid credentials.';
+                default:
+                    return 'Something went wrong.';
+            }
+        }
+        throw error;
+    }
+}
+
