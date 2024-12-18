@@ -1,3 +1,12 @@
+import React, { FC } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
+interface ResponseSkeletonProps {
+  isLoading: boolean;
+  response: string | null;
+}
+
 // Loading animation
 const shimmer =
   'before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent';
@@ -82,7 +91,7 @@ export function LatestInvoicesSkeleton() {
   );
 }
 
-export default function DashboardSkeleton() {
+export function DashboardSkeleton() {
   return (
     <>
       <div
@@ -216,3 +225,22 @@ export function InvoicesTableSkeleton() {
     </div>
   );
 }
+
+
+const ResponseSkeleton: FC<ResponseSkeletonProps> = ({ isLoading, response }) => {
+  return (
+    <div className="mt-6 w-full max-w-md">
+      {isLoading ? (
+        <Skeleton count={3} height={20} />
+      ) : response ? (
+        <div className="p-4 border border-gray-300 rounded-lg bg-white">
+          {response}
+        </div>
+      ) : null}
+    </div>
+  );
+};
+
+
+export default ResponseSkeleton;
+

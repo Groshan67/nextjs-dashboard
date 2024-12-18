@@ -1,5 +1,5 @@
 import CardWrapper from '@/app/ui/dashboard/cards';
-import RevenueChart from '@/app/ui/dashboard/revenue-chart';
+import RevenueChart from '@/app/ui/dashboard/revenue-chart-bk';
 import LatestInvoices from '@/app/ui/dashboard/latest-invoices';
 import { jetBrains } from '@/app/ui/fonts';
 import { Suspense } from 'react';
